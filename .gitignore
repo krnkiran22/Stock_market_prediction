@@ -42,5 +42,4 @@ next-env.d.ts
 *.swo
 *~
 
-# Exclude components folder
-components/
+
