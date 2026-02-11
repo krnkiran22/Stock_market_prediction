@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@layer base {
+  * {
+    @apply border-trade-border-light;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-trade-main text-trade-text-primary font-sans antialiased;
+    overflow: hidden;
+  }
+  
+  /* Invisible Scrollbar with smooth scrolling */
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+  
+  /* For Firefox */
+  * {
+    scrollbar-width: none;
+  }
+  
+  /* For IE and Edge */
+  * {
+    -ms-overflow-style: none;
+  }
+
+  /* Smooth scroll behavior */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+  
+  .scroll-smooth::-webkit-scrollbar-thumb {
+    @apply bg-trade-border-medium;
+  }
+}
+
+@layer utilities {
+  /* Shimmer loading effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  .shimmer {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(
+      90deg,
+      #1F2937 0%,
+      #252A31 50%,
+      #1F2937 100%
+    );
+    background-size: 1000px 100%;
+  }
+  
+  /* Financial number styling */
+  .financial-number {
+    @apply font-mono tabular-nums;
+  }
+
+  /* Custom shadow utilities for trading UI */
+  .shadow-trade {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+  
+  .shadow-trade-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Button click effect */
+  button:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  /* Input focus glow */
+  input:focus, select:focus {
+    box-shadow: 0 0 0 3px rgba(45, 91, 255, 0.1);
+  }
+
+  /* SVG candle hover effects */
+  .candle-group {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .candle-group:hover {
+    opacity: 0.8;
+  }
+
+  /* Chart animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .chart-element {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.6s ease-out;
+  }
+}
