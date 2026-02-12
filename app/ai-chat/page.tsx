@@ -84,57 +84,55 @@ Which stock would you like to analyze today?`
             </div>
 
             {/* Main Application Area */}
-            <main className="flex-1 flex flex-col items-center justify-start lg:justify-center relative z-10 pt-20 lg:pt-24 pb-4 px-3 sm:px-6 lg:px-12 xl:px-24 min-h-0 overflow-hidden">
+            <main className="flex-1 flex flex-col items-center justify-start lg:justify-center relative z-10 pt-20 lg:pt-24 pb-4 px-2 sm:px-6 lg:px-12 xl:px-24 min-h-0">
 
                 {/* Responsive Header */}
-                <div className="text-center mb-6 mt-4 lg:mt-0 lg:mb-8">
-                    <span className="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-brand-primary/10 text-brand-primary text-[9px] sm:text-[10px] font-bold tracking-widest uppercase mb-3">
+                <div className="text-center mb-4 lg:mb-8 shrink-0 mt-2 lg:mt-0">
+                    <span className="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-brand-primary/10 text-brand-primary text-[10px] sm:text-[10px] font-bold tracking-widest uppercase mb-2">
                         <TrendingUp size={12} />
                         Neural Engine Active
                     </span>
-                    <h1 className="text-2xl sm:text-4xl font-extrabold text-brand-text mb-1 tracking-tight">Finlytics Terminal</h1>
-                    <p className="text-xs sm:text-sm text-gray-500 max-w-lg mx-auto px-4 hidden sm:block">Real-time volatility tracking and deep predictive insights.</p>
+                    <h1 className="text-xl sm:text-4xl font-extrabold text-brand-text mb-1 tracking-tight">Finlytics Terminal</h1>
+                    <p className="text-xs sm:text-sm text-gray-500 max-w-lg mx-auto px-4 hidden sm:block">Real-time market analysis and predictive insights.</p>
                 </div>
 
-                {/* Main Chat Deck (Fullscreen on mobile, Card on desktop) */}
-                <div className="w-full max-w-[1400px] flex-1 lg:flex-none lg:h-[75vh] flex flex-col bg-white/70 backdrop-blur-2xl rounded-3xl lg:rounded-[2.5rem] border border-white/80 shadow-2xl overflow-hidden ring-1 ring-black/[0.03] min-h-0">
+                {/* Main Chat Deck */}
+                <div className="w-full max-w-[1400px] flex-1 lg:flex-none lg:h-[75vh] flex flex-col bg-white/70 backdrop-blur-2xl rounded-3xl lg:rounded-[2.5rem] border border-white/80 shadow-2xl overflow-hidden min-h-0">
 
                     {/* Header */}
-                    <div className="px-5 py-4 lg:px-10 lg:py-6 border-b border-gray-100 bg-white/40 flex items-center justify-between shrink-0">
-                        <div className="flex items-center gap-3 lg:gap-4">
+                    <div className="px-4 py-3 lg:px-10 lg:py-6 border-b border-gray-100 bg-white/40 flex items-center justify-between shrink-0">
+                        <div className="flex items-center gap-3">
                             <div className="p-2 lg:p-3 bg-brand-primary text-white rounded-xl lg:rounded-2xl shadow-lg ring-2 lg:ring-4 ring-brand-primary/10">
-                                <Bot size={20} className="lg:w-6 lg:h-6" />
+                                <Bot size={18} className="lg:w-6 lg:h-6" />
                             </div>
                             <div>
-                                <h2 className="text-sm lg:text-lg font-black text-brand-text flex items-center gap-2">
-                                    Finlytics Core v4.1
-                                    <span className="text-[8px] sm:text-[10px] bg-black text-white px-1.5 py-0.5 rounded font-bold uppercase tracking-tighter">Pro</span>
+                                <h2 className="text-xs lg:text-lg font-black text-brand-text flex items-center gap-2">
+                                    Finlytics v4.1
+                                    <span className="hidden sm:inline-block text-[10px] bg-black text-white px-1.5 py-0.5 rounded font-bold uppercase tracking-tighter">Pro</span>
                                 </h2>
-                                <div className="hidden sm:flex items-center gap-3 text-[10px] text-brand-text/50 font-medium font-bold uppercase tracking-widest">
-                                    <Globe size={11} /> Markets Active
+                                <div className="flex items-center gap-2 text-[8px] lg:text-[10px] text-brand-text/50 font-bold uppercase tracking-widest">
+                                    <Globe size={10} /> Live Markets
                                 </div>
                             </div>
                         </div>
 
                         <div className="flex items-center gap-3">
-                            <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse" />
-                            <span className="text-[10px] font-bold text-green-600 uppercase tracking-tighter">Live</span>
+                            <div className="h-1.5 w-1.5 lg:h-2 lg:w-2 bg-green-500 rounded-full animate-pulse" />
+                            <span className="text-[9px] lg:text-[10px] font-bold text-green-600 uppercase tracking-tighter">Connected</span>
                         </div>
                     </div>
 
                     {/* Chat Messages */}
-                    <div className="flex-1 overflow-y-auto custom-scrollbar pt-6 pb-2 min-h-0 overscroll-contain touch-pan-y" style={{ WebkitOverflowScrolling: 'touch' }}>
-                        <div className="max-w-[1100px] mx-auto w-full px-4 lg:px-12">
+                    <div className="flex-1 overflow-y-auto custom-scrollbar pt-4 pb-2 min-h-0 overscroll-contain touch-pan-y" style={{ WebkitOverflowScrolling: 'touch' }}>
+                        <div className="max-w-[1100px] mx-auto w-full px-3 lg:px-12">
                             {messages.map((msg, idx) => (
                                 <ChatMessage key={idx} role={msg.role} content={msg.content} />
                             ))}
                             {isLoading && (
                                 <div className="flex justify-start mb-6 animate-pulse px-2">
-                                    <div className="bg-brand-primary/5 text-brand-primary p-4 rounded-2xl flex items-center gap-3 border border-brand-primary/10">
-                                        <Bot size={18} className="animate-spin-slow" />
-                                        <div className="flex flex-col">
-                                            <span className="text-xs font-bold">Processing Signals...</span>
-                                        </div>
+                                    <div className="bg-brand-primary/5 text-brand-primary p-3 rounded-2xl flex items-center gap-3 border border-brand-primary/10">
+                                        <Bot size={16} className="animate-spin-slow" />
+                                        <span className="text-[10px] font-bold">Forecasting...</span>
                                     </div>
                                 </div>
                             )}
@@ -143,21 +141,30 @@ Which stock would you like to analyze today?`
                     </div>
 
                     {/* Chat Input Area */}
-                    <div className="bg-white/90 backdrop-blur-3xl border-t border-gray-100 p-4 sm:p-6 lg:p-8 shrink-0">
+                    <div className="bg-white/90 backdrop-blur-3xl border-t border-gray-100 p-3 sm:p-6 lg:p-8 shrink-0">
                         <div className="max-w-[1100px] mx-auto w-full">
                             <QuickActions onAction={handleSendMessage} isLoading={isLoading} />
-                            <div className="mt-4">
+                            <div className="mt-3 lg:mt-4">
                                 <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
                             </div>
-                            <p className="text-[9px] text-center text-gray-400 mt-4 sm:mt-6">
-                                Educational purposes only. Market risks apply.
-                            </p>
                         </div>
                     </div>
                 </div>
             </main>
+            <div className="max-w-[1100px] mx-auto w-full">
+                <QuickActions onAction={handleSendMessage} isLoading={isLoading} />
+                <div className="mt-4">
+                    <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+                </div>
+                <p className="text-[9px] text-center text-gray-400 mt-4 sm:mt-6">
+                    Educational purposes only. Market risks apply.
+                </p>
+            </div>
+        </div>
+                </div >
+            </main >
 
-            <style jsx global>{`
+        <style jsx global>{`
                 @keyframes float-candles {
                     0% { transform: translateY(0); opacity: 0.1; }
                     50% { transform: translateY(-20px); opacity: 0.2; }
@@ -172,6 +179,6 @@ Which stock would you like to analyze today?`
                 .custom-scrollbar::-webkit-scrollbar { width: 4px; }
                 .custom-scrollbar::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 10px; }
             `}</style>
-        </div>
+        </div >
     );
 }
