@@ -66,16 +66,16 @@ Which stock would you like to analyze today?`
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[100px] -z-0 pointer-events-none" />
             <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[400px] h-[400px] bg-brand-secondary/5 rounded-full blur-[80px] -z-0 pointer-events-none" />
 
-            <main className="flex-1 flex flex-col overflow-hidden relative z-10 pt-32">
-                {/* Chat Container */}
-                <div className="w-full flex-1 flex flex-col overflow-hidden">
-                    <div className="flex-1 overflow-y-auto custom-scrollbar">
-                        <div className="max-w-5xl mx-auto w-full px-6 py-12 lg:py-16">
+            <main className="flex-1 flex flex-col overflow-hidden relative z-10 pt-36 pb-12 px-6 lg:px-16 xl:px-32">
+                {/* Chat Interior Container with Border and Elevation */}
+                <div className="max-w-5xl mx-auto w-full flex-1 flex flex-col bg-white/40 backdrop-blur-xl rounded-[2rem] border border-white/60 shadow-2xl shadow-brand-primary/5 overflow-hidden ring-1 ring-black/[0.02]">
+                    <div className="flex-1 overflow-y-auto custom-scrollbar pt-16">
+                        <div className="w-full px-6 py-12 lg:py-16">
                             {messages.map((msg, idx) => (
                                 <ChatMessage key={idx} role={msg.role} content={msg.content} />
                             ))}
                             {isLoading && (
-                                <div className="flex justify-start mb-6 animate-pulse">
+                                <div className="flex justify-start mb-6 animate-pulse px-4">
                                     <div className="bg-brand-primary/10 text-brand-primary p-4 rounded-2xl flex items-center gap-3">
                                         <Bot size={20} className="animate-bounce" />
                                         <span className="text-sm font-medium">Analyzing market data...</span>
@@ -87,8 +87,8 @@ Which stock would you like to analyze today?`
                     </div>
 
                     {/* Footer Area with Quick Actions and Input */}
-                    <div className="bg-white/70 backdrop-blur-md border-t border-gray-100 p-6 lg:p-10 mb-2">
-                        <div className="max-w-5xl mx-auto w-full">
+                    <div className="bg-white/60 backdrop-blur-md border-t border-gray-100/50 p-6 lg:p-8">
+                        <div className="w-full">
                             <QuickActions onAction={handleSendMessage} isLoading={isLoading} />
                             <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
 
