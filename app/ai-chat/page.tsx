@@ -19,10 +19,12 @@ export default function AIChatbotPage() {
             role: 'assistant',
             content: `Hello! I'm your Stock Prediction Assistant. I can help you:
       
-• Predict stock prices (7/30/90 days)
-• Analyze trends and patterns
+• Predict stock prices (e.g. RELIANCE, TCS, SBIN, ADANI)
+• Analyze real-time market trends
 • Provide buy/sell/hold signals
-• Explain market movements
+• Explain complex volatility patterns
+
+Currently tracking: **RELIANCE, TCS, INFY, HDFC BANK, SBIN, ADANI, TATA MOTORS, WIPRO**, and more.
 
 Which stock would you like to analyze today?`
         }

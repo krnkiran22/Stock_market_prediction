@@ -17,16 +17,28 @@ const quickActions = [
         prompt: "Predict Infosys stock price for the next 30 days"
     },
     {
-        label: "Top IT Stocks",
-        prompt: "Which Indian IT stocks should I invest in right now?"
+        label: "Predict SBIN",
+        prompt: "Predict SBI stock price for the next 30 days"
+    },
+    {
+        label: "Predict HDFC Bank",
+        prompt: "Predict HDFC Bank stock price for the next 30 days"
+    },
+    {
+        label: "Predict TATA MOTORS",
+        prompt: "Predict Tata Motors stock price for the next 30 days"
+    },
+    {
+        label: "Predict ADANI",
+        prompt: "Predict Adani Enterprises stock price for the next 30 days"
+    },
+    {
+        label: "Predict WIPRO",
+        prompt: "Predict Wipro stock price for the next 30 days"
     },
     {
         label: "Market Outlook",
         prompt: "What is the current market outlook for Indian stocks?"
-    },
-    {
-        label: "Compare Stocks",
-        prompt: "Compare TCS and Infosys - which is better to buy?"
     }
 ];
 
