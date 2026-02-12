@@ -79,6 +79,22 @@ export default function TopNavigation() {
         <span className="text-[10px] text-trade-text-tertiary">• 09:15 IST</span>
       </div>
 
+      {/* AI Chat Link */}
+      <a
+        href="/home"
+        className="flex items-center gap-2 px-4 py-2 bg-trade-info/10 text-trade-info border border-trade-info/20 rounded hover:bg-trade-info/20 transition-all font-medium text-xs whitespace-nowrap group"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform">
+          <path d="M12 8V4H8"></path>
+          <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+          <path d="M2 14h2"></path>
+          <path d="M20 14h2"></path>
+          <path d="M15 13v2"></path>
+          <path d="M9 13v2"></path>
+        </svg>
+        AI Analyst
+      </a>
+
       {/* Ticker - Scrolling */}
       <div className="flex-1 overflow-hidden relative">
         <div className="flex gap-8 animate-scroll whitespace-nowrap">
@@ -97,7 +113,7 @@ export default function TopNavigation() {
 
       {/* User Profile */}
       <div className="relative" ref={profileRef}>
-        <button 
+        <button
           onClick={() => setShowProfileMenu(!showProfileMenu)}
           className="flex items-center gap-3 px-4 py-2 hover:bg-trade-hover border border-trade-border-light rounded transition-all group"
         >
@@ -120,25 +136,25 @@ export default function TopNavigation() {
             </div>
             <div className="p-3">
               <div className="space-y-1">
-                <button 
+                <button
                   onClick={() => alert('Opening Portfolio View...')}
                   className="w-full text-left px-3 py-2 text-sm text-trade-text-primary hover:bg-trade-hover rounded transition-colors"
                 >
                   View Portfolio
                 </button>
-                <button 
+                <button
                   onClick={() => alert('Opening Transaction History...')}
                   className="w-full text-left px-3 py-2 text-sm text-trade-text-primary hover:bg-trade-hover rounded transition-colors"
                 >
                   Transaction History
                 </button>
-                <button 
+                <button
                   onClick={() => alert('Opening Account Settings...')}
                   className="w-full text-left px-3 py-2 text-sm text-trade-text-primary hover:bg-trade-hover rounded transition-colors"
                 >
                   Account Settings
                 </button>
-                <button 
+                <button
                   onClick={() => alert('Opening Risk Analysis...')}
                   className="w-full text-left px-3 py-2 text-sm text-trade-text-primary hover:bg-trade-hover rounded transition-colors"
                 >
@@ -147,7 +163,7 @@ export default function TopNavigation() {
               </div>
             </div>
             <div className="p-3 border-t border-trade-border-light">
-              <button 
+              <button
                 onClick={() => {
                   setShowProfileMenu(false)
                   alert('Signing out...')

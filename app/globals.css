@@ -16,8 +16,7 @@
   }
   
   body {
-    @apply bg-trade-main text-trade-text-primary font-sans antialiased;
-    overflow: hidden;
+    @apply bg-white text-brand-text font-sans antialiased;
   }
   
   /* Invisible Scrollbar with smooth scrolling */
