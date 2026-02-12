@@ -5,9 +5,16 @@ import Link from 'next/link';
 import { TrendingUp, MessageSquare, Info } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-export default function Navbar() {
+interface NavbarProps {
+    fixed?: boolean;
+}
+
+export default function Navbar({ fixed = true }: NavbarProps) {
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
+        <nav className={cn(
+            "top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200",
+            fixed ? "fixed" : "relative"
+        )}>
             <div className="w-full px-8 lg:px-24 xl:px-32">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex items-center gap-2">
