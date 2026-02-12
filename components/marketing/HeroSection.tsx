@@ -12,7 +12,7 @@ export default function HeroSection() {
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-brand-primary/5 rounded-full blur-[120px] -z-10" />
             <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[500px] h-[500px] bg-brand-secondary/5 rounded-full blur-[100px] -z-10" />
 
-            <div className="w-full px-6 lg:px-10">
+            <div className="w-full px-6 lg:px-16 xl:px-24">
                 <div className="flex flex-col lg:flex-row items-center gap-16">
                     <div className="flex-1 text-center lg:text-left">
                         <motion.div

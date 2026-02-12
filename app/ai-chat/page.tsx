@@ -69,8 +69,8 @@ Which stock would you like to analyze today?`
             <main className="flex-1 flex flex-col overflow-hidden relative z-10 pt-16">
                 {/* Chat Container */}
                 <div className="w-full flex-1 flex flex-col overflow-hidden">
-                    <div className="flex-1 overflow-y-auto px-6 lg:px-12 py-8 custom-scrollbar">
-                        <div className="max-w-[1400px] mx-auto w-full">
+                    <div className="flex-1 overflow-y-auto custom-scrollbar">
+                        <div className="max-w-5xl mx-auto w-full px-6 py-12 lg:py-16">
                             {messages.map((msg, idx) => (
                                 <ChatMessage key={idx} role={msg.role} content={msg.content} />
                             ))}
@@ -87,12 +87,12 @@ Which stock would you like to analyze today?`
                     </div>
 
                     {/* Footer Area with Quick Actions and Input */}
-                    <div className="bg-white/50 backdrop-blur-sm border-t border-gray-100 p-6">
-                        <div className="max-w-[1400px] mx-auto w-full">
+                    <div className="bg-white/70 backdrop-blur-md border-t border-gray-100 p-6 lg:p-10 mb-2">
+                        <div className="max-w-5xl mx-auto w-full">
                             <QuickActions onAction={handleSendMessage} isLoading={isLoading} />
                             <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
 
-                            <p className="text-[10px] text-center text-gray-400 mt-3">
+                            <p className="text-[10px] text-center text-gray-400 mt-4">
                                 Institutional-grade AI predictions. Use for educational purposes only.
                             </p>
                         </div>

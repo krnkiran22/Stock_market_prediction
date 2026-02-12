@@ -25,7 +25,7 @@ export default function HowItWorks() {
 
     return (
         <section id="how-it-works" className="py-24 bg-white">
-            <div className="w-full px-6 lg:px-10">
+            <div className="w-full px-6 lg:px-16 xl:px-24">
                 <div className="text-center mb-20">
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-brand-text mb-4">How It Works</h2>
                     <p className="text-gray-600 max-w-2xl mx-auto">Get professional market insights in three simple steps.</p>
