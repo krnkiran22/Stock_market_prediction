@@ -66,10 +66,27 @@ Which stock would you like to analyze today?`
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[100px] -z-0 pointer-events-none" />
             <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[400px] h-[400px] bg-brand-secondary/5 rounded-full blur-[80px] -z-0 pointer-events-none" />
 
-            <main className="flex-1 flex flex-col overflow-hidden relative z-10 pt-36 pb-12 px-6 lg:px-16 xl:px-32">
+            <main className="flex-1 flex flex-col overflow-hidden relative z-10 pt-64 pb-12 px-6 lg:px-16 xl:px-32">
                 {/* Chat Interior Container with Border and Elevation */}
                 <div className="max-w-5xl mx-auto w-full flex-1 flex flex-col bg-white/40 backdrop-blur-xl rounded-[2rem] border border-white/60 shadow-2xl shadow-brand-primary/5 overflow-hidden ring-1 ring-black/[0.02]">
-                    <div className="flex-1 overflow-y-auto custom-scrollbar pt-16">
+                    {/* Chat Header Area */}
+                    <div className="px-8 py-10 border-b border-white/40 bg-white/20 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-brand-primary/10 rounded-lg text-brand-primary">
+                                <Bot size={20} />
+                            </div>
+                            <div>
+                                <h2 className="text-sm font-bold text-brand-text">AI Stock Analyst</h2>
+                                <p className="text-[10px] text-brand-text/60">Live Market Intelligence Integration</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse" />
+                            <span className="text-[10px] font-medium text-green-600 uppercase tracking-wider">Live System Connected</span>
+                        </div>
+                    </div>
+
+                    <div className="flex-1 overflow-y-auto custom-scrollbar pt-4">
                         <div className="w-full px-6 py-12 lg:py-16">
                             {messages.map((msg, idx) => (
                                 <ChatMessage key={idx} role={msg.role} content={msg.content} />
