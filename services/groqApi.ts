@@ -139,26 +139,37 @@ export async function getStockPrediction(userMessage: string, chatHistory: { rol
     let liveDataHint = '';
     const ticker = extractTicker(userMessage);
 
+    // Debug logging for developer console
+    console.log('[Ticker Detection]:', ticker);
+
     if (ticker) {
         try {
             const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
-            const stockRes = await fetch(`${baseUrl}/api/stock?symbol=${encodeURIComponent(ticker)}`);
+            const apiUrl = `${baseUrl}/api/stock?symbol=${encodeURIComponent(ticker)}`;
+            console.log('[API Fetch]:', apiUrl);
+
+            const stockRes = await fetch(apiUrl);
             if (stockRes.ok) {
                 const stockData = await stockRes.json();
-                if (stockData && !stockData.error) {
-                    liveDataHint = `\n\n[CRITICAL: REAL-TIME DATA LOADED FOR ${ticker}]
-- Current Price: ${stockData.currency === 'INR' ? '₹' : '$'}${stockData.price}
-- Official Name: ${stockData.name}
-- Today's Low/High: ${stockData.range}
-- 52-Week Low/High: ${stockData.yearRange}
-- Daily Change: ${stockData.change} (${stockData.changePercent.toFixed(2)}%)
-- Market Cap: ${stockData.marketCap}
+                console.log('[Live Data Result]:', stockData);
 
-INSTRUCTION: You MUST use the REAL-TIME PRICE above (${stockData.price}) in your report. Do NOT claim you have a data cutoff for this specific stock. You are now seeing the live market.`;
+                if (stockData && !stockData.error) {
+                    liveDataHint = `\n\n### [CRITICAL: LIVE MARKET DATA FOR ${ticker}]
+- **Current Price**: ${stockData.currency === 'INR' ? '₹' : '$'}${stockData.price}
+- **Symbol**: ${stockData.symbol}
+- **Change**: ${stockData.change} (${stockData.changePercent}%)
+- **Target Price for today**: ${stockData.price}
+
+**MANDATORY INSTRUCTION**: You are currently connected to the live NSE/BSE market.
+1. Use the price **${stockData.currency === 'INR' ? '₹' : '$'}${stockData.price}** as the ABSOLUTE "Current Price" in your report.
+2. DO NOT mention data cutoffs or suggest the user verify elsewhere for this stock.
+3. Your analysis must center around this live price.`;
                 }
+            } else {
+                console.warn('[API Fetch Failed]:', stockRes.status);
             }
         } catch (e) {
-            console.error('Failed to fetch live stock data:', e);
+            console.error('[Live Data Error]:', e);
         }
     }
 
@@ -166,7 +177,7 @@ INSTRUCTION: You MUST use the REAL-TIME PRICE above (${stockData.price}) in your
         const messages = [
             {
                 role: 'system',
-                content: SYSTEM_PROMPT + (liveDataHint ? liveDataHint : "\n\nNote: If you cannot find live data for a specific stock, provide an expert analysis based on the latest available market trends, but clearly state you are using 'Trend-based Estimates' and suggest verifying with a live source.")
+                content: SYSTEM_PROMPT + (liveDataHint ? liveDataHint : "\n\nNote: For stocks where live data is unavailable, provide an expert trend analysis based on your knowledge cutoff, labeled as 'Trend-based Estimate'.")
             },
             ...chatHistory,
             { role: 'user', content: userMessage }
