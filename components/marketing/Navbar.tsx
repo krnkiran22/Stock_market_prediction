@@ -18,7 +18,7 @@ export default function Navbar() {
                     </div>
 
                     <div className="hidden md:flex items-center space-x-8">
-                        <Link href="/home" className="text-brand-text hover:text-brand-primary transition-colors font-medium">
+                        <Link href="/" className="text-brand-text hover:text-brand-primary transition-colors font-medium">
                             Home
                         </Link>
                         <Link href="/ai-chat" className="text-brand-text hover:text-brand-primary transition-colors font-medium">

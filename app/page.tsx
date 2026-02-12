@@ -1,25 +1,26 @@
-import TopNavigation from '@/components/TopNavigation'
-import LeftSidebar from '@/components/LeftSidebar'
-import MainContent from '@/components/MainContent'
-import RightSidebar from '@/components/RightSidebar'
+'use client';
 
-export default function Home() {
-  return (
-    <div className="h-screen flex flex-col overflow-hidden bg-trade-main">
-      {/* Top Navigation - Fixed 60px */}
-      <TopNavigation />
+import React from 'react';
+import Navbar from '@/components/marketing/Navbar';
+import HeroSection from '@/components/marketing/HeroSection';
+import FeatureSection from '@/components/marketing/FeatureSection';
+import HowItWorks from '@/components/marketing/HowItWorks';
+import TechStack from '@/components/marketing/TechStack';
+import Footer from '@/components/marketing/Footer';
 
-      {/* Main Layout - Left Sidebar + Content + Right Sidebar */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* Left Sidebar - Watchlist - Fixed 320px */}
-        <LeftSidebar />
-
-        {/* Main Content Area - Flex */}
-        <MainContent />
-
-        {/* Right Sidebar - AI Chat + Risk - Fixed 360px */}
-        <RightSidebar />
-      </div>
-    </div>
-  )
+export default function HomePage() {
+    return (
+        <div className="min-h-screen bg-white overflow-auto scroll-smooth">
+            <Navbar />
+            <main>
+                <HeroSection />
+                <div id="tech-stack">
+                    <TechStack />
+                </div>
+                <FeatureSection />
+                <HowItWorks />
+            </main>
+            <Footer />
+        </div>
+    );
 }

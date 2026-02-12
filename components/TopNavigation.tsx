@@ -81,7 +81,7 @@ export default function TopNavigation() {
 
       {/* AI Chat Link */}
       <a
-        href="/home"
+        href="/"
         className="flex items-center gap-2 px-4 py-2 bg-trade-info/10 text-trade-info border border-trade-info/20 rounded hover:bg-trade-info/20 transition-all font-medium text-xs whitespace-nowrap group"
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform">
