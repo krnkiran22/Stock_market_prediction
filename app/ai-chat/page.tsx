@@ -92,7 +92,7 @@ Which stock would you like to analyze today?`
                         <TrendingUp size={12} />
                         Neural Engine Active
                     </span>
-                    <h1 className="text-2xl sm:text-4xl font-extrabold text-brand-text mb-1 tracking-tight">AI Financial Terminal</h1>
+                    <h1 className="text-2xl sm:text-4xl font-extrabold text-brand-text mb-1 tracking-tight">Finlytics Terminal</h1>
                     <p className="text-xs sm:text-sm text-gray-500 max-w-lg mx-auto px-4 hidden sm:block">Real-time volatility tracking and deep predictive insights.</p>
                 </div>
 
@@ -107,7 +107,7 @@ Which stock would you like to analyze today?`
                             </div>
                             <div>
                                 <h2 className="text-sm lg:text-lg font-black text-brand-text flex items-center gap-2">
-                                    Predictor v4.1
+                                    Finlytics Core v4.1
                                     <span className="text-[8px] sm:text-[10px] bg-black text-white px-1.5 py-0.5 rounded font-bold uppercase tracking-tighter">Pro</span>
                                 </h2>
                                 <div className="hidden sm:flex items-center gap-3 text-[10px] text-brand-text/50 font-medium font-bold uppercase tracking-widest">

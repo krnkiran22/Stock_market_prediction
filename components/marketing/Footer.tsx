@@ -10,7 +10,7 @@ export default function Footer() {
                         <div className="bg-brand-primary p-1.5 rounded-lg">
                             <TrendingUp className="h-5 w-5 text-white" />
                         </div>
-                        <span className="text-lg font-bold text-brand-primary">Stock Predictor AI</span>
+                        <span className="text-xl font-black text-brand-text tracking-tighter italic uppercase">FINLYTICS</span>
                     </div>
 
                     <div className="flex gap-8 text-sm text-gray-600">
@@ -21,7 +21,7 @@ export default function Footer() {
                     </div>
 
                     <div className="text-sm text-gray-500">
-                        © 2025 Stock Predictor AI. All rights reserved.
+                        © 2026 FINLYTICS. All rights reserved.
                     </div>
                 </div>
 

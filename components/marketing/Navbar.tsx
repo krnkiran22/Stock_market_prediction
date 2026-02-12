@@ -23,8 +23,8 @@ export default function Navbar({ fixed = true }: NavbarProps) {
                         <div className="bg-brand-primary p-2 rounded-xl shadow-lg shadow-brand-primary/20">
                             <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                         </div>
-                        <span className="text-xl sm:text-2xl font-black text-white tracking-tighter italic">
-                            STOCK ALGO<span className="text-brand-primary"> AI</span>
+                        <span className="text-xl sm:text-2xl font-black text-white tracking-tighter italic uppercase">
+                            FINLYTICS
                         </span>
                     </Link>
 
