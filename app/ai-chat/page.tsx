@@ -166,10 +166,10 @@ Which stock would you like to analyze today?`
                     </div>
 
                     {/* Chat Input Group */}
-                    <div className="bg-white/80 backdrop-blur-3xl border-t border-gray-100 p-8 lg:p-12">
+                    <div className="bg-white/80 backdrop-blur-3xl border-t border-gray-100 p-4 lg:p-6">
                         <div className="max-w-[1100px] mx-auto w-full">
                             <QuickActions onAction={handleSendMessage} isLoading={isLoading} />
-                            <div className="mt-6">
+                            <div className="mt-2">
                                 <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
                             </div>
 
