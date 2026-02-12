@@ -59,10 +59,14 @@ Which stock would you like to analyze today?`
     };
 
     return (
-        <div className="flex flex-col h-screen bg-brand-bg overflow-hidden">
+        <div className="flex flex-col h-screen bg-brand-bg overflow-hidden relative">
             <Navbar />
 
-            <main className="flex-1 mt-16 flex flex-col items-center justify-between overflow-hidden">
+            {/* Abstract Background Elements */}
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[100px] -z-0 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[400px] h-[400px] bg-brand-secondary/5 rounded-full blur-[80px] -z-0 pointer-events-none" />
+
+            <main className="flex-1 mt-16 flex flex-col items-center justify-between overflow-hidden relative z-10">
                 {/* Chat Container */}
                 <div className="w-full max-w-4xl flex-1 flex flex-col overflow-hidden px-4 py-6">
                     <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
