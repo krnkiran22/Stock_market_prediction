@@ -88,43 +88,52 @@ When user asks for a stock prediction, ALWAYS respond in this format:
 
 // Helper to extract potential ticker or stock name
 function extractTicker(message: string): string | null {
-    const msg = message.toUpperCase();
+    // 1. Clean the message and make it uppercase
+    const msg = message.toUpperCase().replace(/[?!,.()]/g, ' ');
+    const words = msg.split(/\s+/).filter(w => w.length > 0);
 
-    // 1. Precise Name to Ticker Mappings
-    const mappings: Array<{ key: string, ticker: string }> = [
-        { key: 'RELIANCE', ticker: 'RELIANCE.NS' },
-        { key: 'TATA CONSULTANCY', ticker: 'TCS.NS' },
-        { key: 'TCS', ticker: 'TCS.NS' },
-        { key: 'INFOSYS', ticker: 'INFY.NS' },
-        { key: 'INFY', ticker: 'INFY.NS' },
-        { key: 'TATA MOTORS', ticker: 'TATAMOTORS.NS' },
-        { key: 'HDFC BANK', ticker: 'HDFCBANK.NS' },
-        { key: 'HDFC', ticker: 'HDFCBANK.NS' },
-        { key: 'ICICI', ticker: 'ICICIBANK.NS' },
-        { key: 'STATE BANK', ticker: 'SBIN.NS' },
-        { key: 'SBI', ticker: 'SBIN.NS' },
-        { key: 'SBIN', ticker: 'SBIN.NS' },
-        { key: 'ADANI', ticker: 'ADANIENT.NS' },
-        { key: 'WIPRO', ticker: 'WIPRO.NS' },
-        { key: 'BHARTI AIRTEL', ticker: 'BHARTIARTL.NS' },
-        { key: 'AIRTEL', ticker: 'BHARTIARTL.NS' }
+    // 2. Precise Mappings (including common names)
+    const mappings: Array<{ keys: string[], ticker: string }> = [
+        { keys: ['RELIANCE', 'RIL'], ticker: 'RELIANCE.NS' },
+        { keys: ['TCS', 'TATA CONSULTANCY'], ticker: 'TCS.NS' },
+        { keys: ['INFOSYS', 'INFY'], ticker: 'INFY.NS' },
+        { keys: ['WIPRO'], ticker: 'WIPRO.NS' },
+        { keys: ['HDFC', 'HDFCBANK'], ticker: 'HDFCBANK.NS' },
+        { keys: ['ICICI', 'ICICIBANK'], ticker: 'ICICIBANK.NS' },
+        { keys: ['SBI', 'SBIN', 'STATE BANK OF INDIA'], ticker: 'SBIN.NS' },
+        { keys: ['TATA MOTORS', 'TATAMOTORS'], ticker: 'TATAMOTORS.NS' },
+        { keys: ['ADANI', 'ADANIENT', 'ADANI ENTERPRISES'], ticker: 'ADANIENT.NS' },
+        { keys: ['BHARTI AIRTEL', 'AIRTEL'], ticker: 'BHARTIARTL.NS' },
+        { keys: ['AXIS', 'AXISBANK'], ticker: 'AXISBANK.NS' },
+        { keys: ['ITC'], ticker: 'ITC.NS' },
+        { keys: ['MARUTI', 'MARUTI SUZUKI'], ticker: 'MARUTI.NS' },
+        { keys: ['BAJAJ FINANCE', 'BAJFINANCE'], ticker: 'BAJFINANCE.NS' },
+        { keys: ['LARSEN', 'L&T', 'LT'], ticker: 'LT.NS' },
+        { keys: ['SUN PHARMA', 'SUNPHARMA'], ticker: 'SUNPHARMA.NS' },
+        { keys: ['KOTAK', 'KOTAK BANK', 'KOTAKMAHINDRA'], ticker: 'KOTAKBANK.NS' }
     ];
 
+    // Priority 1: Check multi-word mappings (e.g., "TATA CONSULTANCY")
     for (const item of mappings) {
-        if (msg.includes(item.key)) return item.ticker;
-    }
-
-    // 2. Ticker Pattern Matching (e.g. NSE:TCS, RELIANCE.NS, TCS)
-    const words = msg.split(/[\s,:]+/); // Split by space, comma, or colon
-    for (const word of words) {
-        if (word.endsWith('.NS') || word.endsWith('.BO')) return word;
-        if (/^[A-Z]{2,6}$/.test(word)) {
-            // Check list of known Indian symbols that usually need .NS
-            const commonIndian = ['TCS', 'RELIANCE', 'INFY', 'SBIN', 'HDFCBANK', 'AXISBANK', 'WIPRO', 'ADANIENT', 'TATAMOTORS'];
-            if (commonIndian.includes(word)) return `${word}.NS`;
-            return word;
+        for (const key of item.keys) {
+            if (msg.includes(key)) return item.ticker;
         }
     }
+
+    // Priority 2: Look for words with .NS or .BO suffix
+    for (const word of words) {
+        if (word.endsWith('.NS') || word.endsWith('.BO')) return word;
+    }
+
+    // Priority 3: Look for 2-5 letter all-caps words (potential tickers)
+    const commonTickers = ['TCS', 'RELIANCE', 'INFY', 'WIPRO', 'SBIN', 'HDFCBANK', 'AXISBANK', 'ITC'];
+    for (const word of words) {
+        if (/^[A-Z]{2,6}$/.test(word)) {
+            if (commonTickers.includes(word)) return `${word}.NS`;
+            return word; // Might be a US ticker or already suffixed (handled above)
+        }
+    }
+
     return null;
 }
 
