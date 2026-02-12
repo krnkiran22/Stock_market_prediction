@@ -60,16 +60,16 @@ Which stock would you like to analyze today?`
 
     return (
         <div className="flex flex-col h-screen bg-brand-bg overflow-hidden relative">
-            <Navbar fixed={false} />
+            <Navbar />
 
             {/* Abstract Background Elements */}
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[100px] -z-0 pointer-events-none" />
             <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[400px] h-[400px] bg-brand-secondary/5 rounded-full blur-[80px] -z-0 pointer-events-none" />
 
-            <main className="flex-1 flex flex-col overflow-hidden relative z-10">
+            <main className="flex-1 flex flex-col overflow-hidden relative z-10 pt-32">
                 {/* Chat Container */}
                 <div className="w-full flex-1 flex flex-col overflow-hidden">
-                    <div className="flex-1 overflow-y-auto custom-scrollbar pt-12">
+                    <div className="flex-1 overflow-y-auto custom-scrollbar">
                         <div className="max-w-5xl mx-auto w-full px-6 py-12 lg:py-16">
                             {messages.map((msg, idx) => (
                                 <ChatMessage key={idx} role={msg.role} content={msg.content} />
