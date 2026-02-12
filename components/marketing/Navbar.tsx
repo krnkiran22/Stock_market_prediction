@@ -12,33 +12,33 @@ interface NavbarProps {
 export default function Navbar({ fixed = true }: NavbarProps) {
     return (
         <nav className={cn(
-            "top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200",
+            "top-0 left-0 right-0 z-50 bg-black/40 backdrop-blur-xl border-b border-white/10",
             fixed ? "fixed" : "relative"
         )}>
             <div className="w-full px-8 lg:px-24 xl:px-32">
-                <div className="flex justify-between items-center h-16">
-                    <div className="flex items-center gap-2">
-                        <div className="bg-brand-primary p-1.5 rounded-lg">
+                <div className="flex justify-between items-center h-20">
+                    <div className="flex items-center gap-3">
+                        <div className="bg-brand-primary p-2 rounded-xl shadow-lg shadow-brand-primary/20">
                             <TrendingUp className="h-6 w-6 text-white" />
                         </div>
-                        <span className="text-xl font-bold text-brand-primary">Stock Predictor AI</span>
+                        <span className="text-2xl font-black text-white tracking-tighter italic">STOCK ALGO<span className="text-brand-primary"> AI</span></span>
                     </div>
 
-                    <div className="hidden md:flex items-center space-x-8">
-                        <Link href="/" className="text-brand-text hover:text-brand-primary transition-colors font-medium">
+                    <div className="hidden md:flex items-center space-x-10">
+                        <Link href="/" className="text-white/80 hover:text-white transition-colors font-bold text-sm uppercase tracking-widest">
                             Home
                         </Link>
-                        <Link href="/ai-chat" className="text-brand-text hover:text-brand-primary transition-colors font-medium">
-                            AI Chat
+                        <Link href="/ai-chat" className="text-white/80 hover:text-white transition-colors font-bold text-sm uppercase tracking-widest">
+                            AI Terminal
                         </Link>
-                        <Link href="#about" className="text-brand-text hover:text-brand-primary transition-colors font-medium">
+                        <Link href="#tech-stack" className="text-white/80 hover:text-white transition-colors font-bold text-sm uppercase tracking-widest">
                             About
                         </Link>
                         <Link
                             href="/ai-chat"
-                            className="bg-brand-primary text-white px-5 py-2 rounded-full font-medium hover:bg-brand-primary/90 transition-all shadow-md hover:shadow-lg active:scale-95"
+                            className="bg-white text-brand-text px-8 py-3 rounded-xl font-black text-sm hover:bg-brand-primary hover:text-white transition-all shadow-xl active:scale-95"
                         >
-                            Start Predicting
+                            Get Started
                         </Link>
                     </div>
                 </div>

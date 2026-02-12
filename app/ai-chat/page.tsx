@@ -62,10 +62,13 @@ Which stock would you like to analyze today?`
         <div className="flex flex-col h-screen bg-slate-50 overflow-hidden relative font-sans">
             <Navbar />
 
-            {/* Dynamic Background: Moving Stock Candles & Gradients */}
+            {/* Dynamic Background: Moving Stock Candles & Video Overlays */}
             <div className="absolute inset-0 z-0 pointer-events-none">
+                {/* Background Video Layer */}
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center opacity-[0.05] grayscale" />
+
                 {/* Vibrant Gradients */}
-                <div className="absolute top-0 left-0 w-full h-[600px] bg-gradient-to-b from-brand-primary/10 via-brand-secondary/5 to-transparent blur-[120px]" />
+                <div className="absolute top-0 left-0 w-full h-[600px] bg-gradient-to-b from-brand-primary/20 via-brand-secondary/10 to-transparent blur-[120px]" />
                 <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-primary/10 rounded-full blur-[100px]" />
                 <div className="absolute top-[20%] right-[10%] w-[300px] h-[300px] bg-brand-secondary/10 rounded-full blur-[80px]" />
 
