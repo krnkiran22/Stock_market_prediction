@@ -97,10 +97,10 @@ Which stock would you like to analyze today?`
                 </div>
 
                 {/* Main Chat Deck (Fullscreen on mobile, Card on desktop) */}
-                <div className="w-full max-w-[1400px] flex-1 lg:flex-none lg:h-[75vh] flex flex-col bg-white/70 backdrop-blur-2xl rounded-3xl lg:rounded-[2.5rem] border border-white/80 shadow-2xl overflow-hidden ring-1 ring-black/[0.03]">
+                <div className="w-full max-w-[1400px] flex-1 lg:flex-none lg:h-[75vh] flex flex-col bg-white/70 backdrop-blur-2xl rounded-3xl lg:rounded-[2.5rem] border border-white/80 shadow-2xl overflow-hidden ring-1 ring-black/[0.03] min-h-0">
 
                     {/* Header */}
-                    <div className="px-5 py-4 lg:px-10 lg:py-6 border-b border-gray-100 bg-white/40 flex items-center justify-between">
+                    <div className="px-5 py-4 lg:px-10 lg:py-6 border-b border-gray-100 bg-white/40 flex items-center justify-between shrink-0">
                         <div className="flex items-center gap-3 lg:gap-4">
                             <div className="p-2 lg:p-3 bg-brand-primary text-white rounded-xl lg:rounded-2xl shadow-lg ring-2 lg:ring-4 ring-brand-primary/10">
                                 <Bot size={20} className="lg:w-6 lg:h-6" />
@@ -123,7 +123,7 @@ Which stock would you like to analyze today?`
                     </div>
 
                     {/* Chat Messages */}
-                    <div className="flex-1 overflow-y-auto custom-scrollbar pt-6 pb-2">
+                    <div className="flex-1 overflow-y-auto custom-scrollbar pt-6 pb-2 min-h-0 overscroll-contain touch-pan-y" style={{ WebkitOverflowScrolling: 'touch' }}>
                         <div className="max-w-[1100px] mx-auto w-full px-4 lg:px-12">
                             {messages.map((msg, idx) => (
                                 <ChatMessage key={idx} role={msg.role} content={msg.content} />
@@ -143,7 +143,7 @@ Which stock would you like to analyze today?`
                     </div>
 
                     {/* Chat Input Area */}
-                    <div className="bg-white/90 backdrop-blur-3xl border-t border-gray-100 p-4 sm:p-6 lg:p-8">
+                    <div className="bg-white/90 backdrop-blur-3xl border-t border-gray-100 p-4 sm:p-6 lg:p-8 shrink-0">
                         <div className="max-w-[1100px] mx-auto w-full">
                             <QuickActions onAction={handleSendMessage} isLoading={isLoading} />
                             <div className="mt-4">
