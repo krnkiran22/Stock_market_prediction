@@ -6,7 +6,7 @@ import ChatMessage from '@/components/chat/ChatMessage';
 import ChatInput from '@/components/chat/ChatInput';
 import QuickActions from '@/components/chat/QuickActions';
 import { getStockPrediction } from '@/services/groqApi';
-import { Bot, TrendingUp, BarChart3, Globe, Shield } from 'lucide-react';
+import { Bot, TrendingUp, Globe } from 'lucide-react';
 
 interface Message {
     role: 'assistant' | 'user';
@@ -84,7 +84,7 @@ Which stock would you like to analyze today?`
             </div>
 
             {/* Main Application Area */}
-            <main className="flex-1 flex flex-col items-center justify-start lg:justify-center relative z-10 pt-20 lg:pt-24 pb-4 px-2 sm:px-6 lg:px-12 xl:px-24 min-h-0">
+            <main className="flex-1 flex flex-col items-center justify-start lg:justify-center relative z-10 pt-20 lg:pt-24 pb-4 px-2 sm:px-6 lg:px-12 xl:px-24 min-h-0 overflow-hidden">
 
                 {/* Responsive Header */}
                 <div className="text-center mb-4 lg:mb-8 shrink-0 mt-2 lg:mt-0">
@@ -147,24 +147,15 @@ Which stock would you like to analyze today?`
                             <div className="mt-3 lg:mt-4">
                                 <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
                             </div>
+                            <p className="text-[9px] text-center text-gray-400 mt-4 lg:mt-6">
+                                Educational purposes only. Market risks apply.
+                            </p>
                         </div>
                     </div>
                 </div>
             </main>
-            <div className="max-w-[1100px] mx-auto w-full">
-                <QuickActions onAction={handleSendMessage} isLoading={isLoading} />
-                <div className="mt-4">
-                    <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
-                </div>
-                <p className="text-[9px] text-center text-gray-400 mt-4 sm:mt-6">
-                    Educational purposes only. Market risks apply.
-                </p>
-            </div>
-        </div>
-                </div >
-            </main >
 
-        <style jsx global>{`
+            <style jsx global>{`
                 @keyframes float-candles {
                     0% { transform: translateY(0); opacity: 0.1; }
                     50% { transform: translateY(-20px); opacity: 0.2; }
@@ -179,6 +170,6 @@ Which stock would you like to analyze today?`
                 .custom-scrollbar::-webkit-scrollbar { width: 4px; }
                 .custom-scrollbar::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 10px; }
             `}</style>
-        </div >
+        </div>
     );
 }
