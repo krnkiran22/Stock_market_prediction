@@ -88,15 +88,31 @@ When user asks for a stock prediction, ALWAYS respond in this format:
 
 // Helper to extract potential ticker or stock name
 function extractTicker(message: string): string | null {
-    // Simple regex to find common patterns like "Predict RELIANCE", "Price of AAPL", etc.
-    const words = message.toUpperCase().split(/\s+/);
-    // Look for common Indian stocks if no suffix
-    const commonIndianStocks = ['RELIANCE', 'TCS', 'INFY', 'HDFCBANK', 'ICICIBANK', 'TATAMOTORS', 'SBIN'];
+    const msg = message.toUpperCase();
 
+    // Explicit Name to Ticker Mapping
+    const mappings: { [key: string]: string } = {
+        'RELIANCE': 'RELIANCE.NS',
+        'TCS': 'TCS.NS',
+        'INFY': 'INFY.NS',
+        'INFOSYS': 'INFY.NS',
+        'HDFC': 'HDFCBANK.NS',
+        'ICICIBANK': 'ICICIBANK.NS',
+        'SBIN': 'SBIN.NS',
+        'SBI': 'SBIN.NS',
+        'TATAMOTORS': 'TATAMOTORS.NS',
+        'ADANI': 'ADANIENT.NS'
+    };
+
+    for (const [name, ticker] of Object.entries(mappings)) {
+        if (msg.includes(name)) return ticker;
+    }
+
+    // Fallback: search for words that look like tickers
+    const words = msg.split(/\s+/);
     for (const word of words) {
-        if (commonIndianStocks.includes(word)) return `${word}.NS`;
         if (word.endsWith('.NS') || word.endsWith('.BO')) return word;
-        if (word.length >= 2 && word.length <= 5 && /^[A-Z]+$/.test(word)) return word;
+        if (/^[A-Z]{2,6}$/.test(word)) return word;
     }
     return null;
 }

@@ -48,7 +48,7 @@ export default function FeatureSection() {
 
     return (
         <section className="py-24 bg-brand-bg">
-            <div className="w-full px-6 lg:px-16 xl:px-24">
+            <div className="w-full px-8 lg:px-24 xl:px-32">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-brand-text mb-4">Powerful Features</h2>
                     <p className="text-gray-600 max-w-2xl mx-auto">Our advanced AI system combines multiple technical models to give you the most accurate market outlook.</p>

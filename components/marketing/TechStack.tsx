@@ -30,7 +30,7 @@ const stackData = [
 export default function TechStack() {
     return (
         <section className="py-24 bg-white overflow-hidden">
-            <div className="w-full px-6 lg:px-16 xl:px-24">
+            <div className="w-full px-8 lg:px-24 xl:px-32">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

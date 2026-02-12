@@ -66,7 +66,7 @@ Which stock would you like to analyze today?`
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[100px] -z-0 pointer-events-none" />
             <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[400px] h-[400px] bg-brand-secondary/5 rounded-full blur-[80px] -z-0 pointer-events-none" />
 
-            <main className="flex-1 flex flex-col overflow-hidden relative z-10 pt-16">
+            <main className="flex-1 flex flex-col overflow-hidden relative z-0 pt-20">
                 {/* Chat Container */}
                 <div className="w-full flex-1 flex flex-col overflow-hidden">
                     <div className="flex-1 overflow-y-auto custom-scrollbar">
