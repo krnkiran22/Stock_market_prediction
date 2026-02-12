@@ -61,7 +61,7 @@ Which stock would you like to analyze today?`
     };
 
     return (
-        <div className="flex flex-col h-[100dvh] bg-slate-50 overflow-hidden relative font-sans">
+        <div className="flex flex-col h-[100dvh] bg-slate-50 overflow-hidden relative font-sans min-h-0">
             <Navbar />
 
             {/* Dynamic Background */}
@@ -84,7 +84,7 @@ Which stock would you like to analyze today?`
             </div>
 
             {/* Main Application Area */}
-            <main className="flex-1 flex flex-col items-center justify-start lg:justify-center relative z-10 pt-24 pb-4 px-3 sm:px-6 lg:px-12 xl:px-24">
+            <main className="flex-1 flex flex-col items-center justify-start lg:justify-center relative z-10 pt-20 lg:pt-24 pb-4 px-3 sm:px-6 lg:px-12 xl:px-24 min-h-0 overflow-hidden">
 
                 {/* Responsive Header */}
                 <div className="text-center mb-6 mt-4 lg:mt-0 lg:mb-8">
