@@ -9,40 +9,46 @@ export async function GET(req: NextRequest) {
     }
 
     try {
-        // We try to fetch from Yahoo Finance public API
-        // Indian stocks usually need .NS or .BO suffix
+        // Using v8/finance/chart which is more reliable than the quote endpoint
         const response = await fetch(
-            `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbol}`,
+            `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=1d`,
             {
                 headers: {
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-                    'Accept': 'application/json',
                 },
-                next: { revalidate: 300 }, // Cache for 5 minutes
+                next: { revalidate: 300 },
             }
         );
 
         if (!response.ok) {
-            throw new Error('Failed to fetch from Yahoo Finance');
+            const errorText = await response.text();
+            console.error(`Yahoo Finance Error Status: ${response.status}`, errorText);
+            throw new Error(`Failed to fetch from Yahoo Finance: ${response.status}`);
         }
 
         const data = await response.json();
-        const result = data.quoteResponse?.result?.[0];
+        const result = data.chart?.result?.[0];
 
         if (!result) {
             return NextResponse.json({ error: 'Stock not found' }, { status: 404 });
         }
 
+        const meta = result.meta;
+        const price = meta.regularMarketPrice;
+        const prevClose = meta.chartPreviousClose;
+        const change = price - prevClose;
+        const changePercent = (change / prevClose) * 100;
+
         return NextResponse.json({
-            symbol: result.symbol,
-            price: result.regularMarketPrice,
-            currency: result.currency,
-            change: result.regularMarketChange,
-            changePercent: result.regularMarketChangePercent,
-            range: `${result.regularMarketDayLow} - ${result.regularMarketDayHigh}`,
-            yearRange: `${result.fiftyTwoWeekLow} - ${result.fiftyTwoWeekHigh}`,
-            marketCap: result.marketCap,
-            name: result.longName || result.shortName,
+            symbol: meta.symbol,
+            price: price.toFixed(2),
+            currency: meta.currency,
+            change: change.toFixed(2),
+            changePercent: changePercent.toFixed(2),
+            range: `${result.indicators.quote[0].low?.[0]?.toFixed(2) || 'N/A'} - ${result.indicators.quote[0].high?.[0]?.toFixed(2) || 'N/A'}`,
+            yearRange: "Check live for 52w",
+            marketCap: "N/A",
+            name: meta.symbol, // Chart API doesn't always provide full name
         });
     } catch (error) {
         console.error('Stock API Error:', error);
