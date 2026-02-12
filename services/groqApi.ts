@@ -86,6 +86,21 @@ When user asks for a stock prediction, ALWAYS respond in this format:
 "⚠️ Disclaimer: This prediction is for educational purposes only. Stock markets are volatile and past performance doesn't guarantee future results. Always do your own research and consult a financial advisor before investing."
 `;
 
+// Helper to extract potential ticker or stock name
+function extractTicker(message: string): string | null {
+    // Simple regex to find common patterns like "Predict RELIANCE", "Price of AAPL", etc.
+    const words = message.toUpperCase().split(/\s+/);
+    // Look for common Indian stocks if no suffix
+    const commonIndianStocks = ['RELIANCE', 'TCS', 'INFY', 'HDFCBANK', 'ICICIBANK', 'TATAMOTORS', 'SBIN'];
+
+    for (const word of words) {
+        if (commonIndianStocks.includes(word)) return `${word}.NS`;
+        if (word.endsWith('.NS') || word.endsWith('.BO')) return word;
+        if (word.length >= 2 && word.length <= 5 && /^[A-Z]+$/.test(word)) return word;
+    }
+    return null;
+}
+
 export async function getStockPrediction(userMessage: string, chatHistory: { role: string, content: string }[] = []) {
     const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY;
 
@@ -94,9 +109,33 @@ export async function getStockPrediction(userMessage: string, chatHistory: { rol
         return 'Error: API Key is missing. Please configure it in the settings.';
     }
 
+    let liveDataHint = '';
+    const ticker = extractTicker(userMessage);
+
+    if (ticker) {
+        try {
+            // Fetch live data from our internal API
+            const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+            const stockRes = await fetch(`${baseUrl}/api/stock?symbol=${ticker}`);
+            if (stockRes.ok) {
+                const stockData = await stockRes.json();
+                liveDataHint = `\n\n[REAL-TIME MARKET DATA FOR ${ticker}]:
+- Current Price: ${stockData.currency === 'INR' ? '₹' : '$'}${stockData.price}
+- Name: ${stockData.name}
+- Today's Range: ${stockData.range}
+- 52-Week Range: ${stockData.yearRange}
+- Change: ${stockData.change} (${stockData.changePercent.toFixed(2)}%)
+- Market Cap: ${stockData.marketCap}
+Use this REAL-TIME data for the "CURRENT STATUS" section of your report. Do not hallucinate different prices.`;
+            }
+        } catch (e) {
+            console.error('Failed to fetch live stock data:', e);
+        }
+    }
+
     try {
         const messages = [
-            { role: 'system', content: SYSTEM_PROMPT },
+            { role: 'system', content: SYSTEM_PROMPT + (liveDataHint ? liveDataHint : "\n\nNote: If no real-time data is provided, tell the user you are an AI with a data cutoff and recommend verifying with a live source.") },
             ...chatHistory,
             { role: 'user', content: userMessage }
         ];
@@ -110,7 +149,7 @@ export async function getStockPrediction(userMessage: string, chatHistory: { rol
             body: JSON.stringify({
                 model: 'llama-3.3-70b-versatile',
                 messages: messages,
-                temperature: 0.3,
+                temperature: 0.1, // Lower temperature for more factual prediction reports
                 max_tokens: 2000
             })
         });
