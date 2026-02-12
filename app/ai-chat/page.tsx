@@ -66,32 +66,36 @@ Which stock would you like to analyze today?`
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[100px] -z-0 pointer-events-none" />
             <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[400px] h-[400px] bg-brand-secondary/5 rounded-full blur-[80px] -z-0 pointer-events-none" />
 
-            <main className="flex-1 mt-16 flex flex-col items-center justify-between overflow-hidden relative z-10">
+            <main className="flex-1 flex flex-col overflow-hidden relative z-10 pt-16">
                 {/* Chat Container */}
-                <div className="w-full max-w-4xl flex-1 flex flex-col overflow-hidden px-4 py-6">
-                    <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                        {messages.map((msg, idx) => (
-                            <ChatMessage key={idx} role={msg.role} content={msg.content} />
-                        ))}
-                        {isLoading && (
-                            <div className="flex justify-start mb-6 animate-pulse">
-                                <div className="bg-brand-primary/10 text-brand-primary p-4 rounded-2xl flex items-center gap-3">
-                                    <Bot size={20} className="animate-bounce" />
-                                    <span className="text-sm font-medium">Analyzing market data...</span>
+                <div className="w-full flex-1 flex flex-col overflow-hidden">
+                    <div className="flex-1 overflow-y-auto px-6 lg:px-12 py-8 custom-scrollbar">
+                        <div className="max-w-[1400px] mx-auto w-full">
+                            {messages.map((msg, idx) => (
+                                <ChatMessage key={idx} role={msg.role} content={msg.content} />
+                            ))}
+                            {isLoading && (
+                                <div className="flex justify-start mb-6 animate-pulse">
+                                    <div className="bg-brand-primary/10 text-brand-primary p-4 rounded-2xl flex items-center gap-3">
+                                        <Bot size={20} className="animate-bounce" />
+                                        <span className="text-sm font-medium">Analyzing market data...</span>
+                                    </div>
                                 </div>
-                            </div>
-                        )}
-                        <div ref={messagesEndRef} />
+                            )}
+                            <div ref={messagesEndRef} />
+                        </div>
                     </div>
 
                     {/* Footer Area with Quick Actions and Input */}
-                    <div className="mt-4">
-                        <QuickActions onAction={handleSendMessage} isLoading={isLoading} />
-                        <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+                    <div className="bg-white/50 backdrop-blur-sm border-t border-gray-100 p-6">
+                        <div className="max-w-[1400px] mx-auto w-full">
+                            <QuickActions onAction={handleSendMessage} isLoading={isLoading} />
+                            <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
 
-                        <p className="text-[10px] text-center text-gray-400 mt-2 pb-2">
-                            Institutional-grade AI predictions. Use for educational purposes only.
-                        </p>
+                            <p className="text-[10px] text-center text-gray-400 mt-3">
+                                Institutional-grade AI predictions. Use for educational purposes only.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </main>

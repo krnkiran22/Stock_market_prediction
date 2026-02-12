@@ -20,8 +20,8 @@ export default function ChatInput({ onSendMessage, isLoading }: ChatInputProps) 
     };
 
     return (
-        <div className="border-t border-gray-200 bg-white p-4">
-            <form onSubmit={handleSubmit} className="max-w-4xl mx-auto flex gap-3">
+        <div className="p-0">
+            <form onSubmit={handleSubmit} className="w-full flex gap-3">
                 <input
                     type="text"
                     value={input}
