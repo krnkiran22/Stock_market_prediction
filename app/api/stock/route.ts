@@ -14,6 +14,10 @@ export async function GET(req: NextRequest) {
         const response = await fetch(
             `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbol}`,
             {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                    'Accept': 'application/json',
+                },
                 next: { revalidate: 300 }, // Cache for 5 minutes
             }
         );
